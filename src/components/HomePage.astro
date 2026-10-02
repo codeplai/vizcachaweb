@@ -5,6 +5,7 @@ import CardGrid from './CardGrid.astro';
 import Features from './Features.astro';
 import Download from './Download.astro';
 import MadeInPeru from './MadeInPeru.astro';
+import { screenshots } from '../assets/screenshots.js';
 import { t } from '../i18n/index.js';
 
 const { lang = 'es' } = Astro.props;
@@ -17,7 +18,7 @@ const c = t(lang);
   <Hero lang={lang} />
   <CardGrid id="para-quien" eyebrow={c.audience.eyebrow} title={c.audience.title} items={c.audience.items} cols={3} />
   <Features lang={lang} />
-  <CardGrid id="aprender" eyebrow={c.learning.eyebrow} title={c.learning.title} items={c.learning.items} cols={4} alt={true} />
+  <CardGrid id="aprender" eyebrow={c.learning.eyebrow} title={c.learning.title} items={c.learning.items} cols={4} alt={true} image={screenshots[lang].dark} imageAlt={c.learning.shotAlt} imageCaption={c.learning.shotCaption} />
   <Download lang={lang} />
   <CardGrid id="estado" eyebrow={c.status.eyebrow} title={c.status.title} lead={c.status.lead} items={c.status.items} cols={2} />
   <MadeInPeru lang={lang} />

@@ -1,9 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import { inlineMarkdown } from '../i18n/inlineMarkdown.js';
 
 // Sección con encabezado y una rejilla de tarjetas {t, d}. Se usa en «para quién»,
 // «pensado para aprender» y «estado del proyecto».
-const { id = undefined, eyebrow, title, lead = null, items, alt = false, cols = 3 } = Astro.props;
+const { id = undefined, eyebrow, title, lead = null, items, alt = false, cols = 3, image = null, imageAlt = '', imageCaption = '' } = Astro.props;
 const headingId = id ? `${id}-title` : undefined;
 ---
 
@@ -24,5 +25,13 @@ const headingId = id ? `${id}-title` : undefined;
         ))
       }
     </ul>
+    {
+      image && (
+        <figure class="frow__shot cards__shot">
+          <Image src={image} alt={imageAlt} width={1100} loading="lazy" sizes="(max-width: 1100px) 94vw, 1000px" />
+          <figcaption>{imageCaption}</figcaption>
+        </figure>
+      )
+    }
   </div>
 </section>

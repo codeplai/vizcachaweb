@@ -12,6 +12,7 @@ const c = t(lang).peru;
       <p class="eyebrow">{c.eyebrow}</p>
       <h2 class="h2" id="peru-title">{c.title}</h2>
       <p class="lead" set:html={inlineMarkdown(c.p1)} />
+      {c.story.map((p) => <p class="peru__story" set:html={inlineMarkdown(p)} />)}
     </div>
     <div>
       <h3 class="h3">{c.contactTitle}</h3>

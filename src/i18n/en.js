@@ -57,6 +57,10 @@ export default {
         'Type in the console when your program asks for keyboard input.',
         'Pass arguments to your program and work with projects that use `go.mod`.',
         'Your code is tidied up when you save, using the standard Go format (gofmt).',
+        '**Stop** first sends your program a Ctrl+C, so its `defer`s and signal handlers run, and only then ends it.',
+        'Output understands **ANSI colors** and progress bars that redraw themselves with `\\r`.',
+        'If `go vet` spots something suspicious in a program that does compile (for example a `Printf` whose format does not match its values), the Assistant explains it after the run.',
+        'Right-click in **Output**, **Problems** and **Console**: copy, copy all, paste, select all and clear.',
       ],
     },
     errors: {
@@ -78,8 +82,31 @@ export default {
         'See the value of your variables at every step. The one that just changed is highlighted, so you can see what the last line did.',
         'Find out **how you got there** (the call stack) and what each goroutine is doing.',
       ],
-      alt: 'The VizcachaIDE debugger showing variables, the one that just changed and the call stack',
-      caption: 'Debugging step by step: variables, the one that just changed and how you got there.',
+      alt: 'The VizcachaIDE debugger showing calls as nested boxes, each with its arguments, for example factorial(n=3)',
+      caption: 'Each call is a box inside the one that made it. "You are here" marks the current call.',
+    },
+    console: {
+      t: 'Try ideas in the Go console',
+      items: [
+        "It is Thonny's \"Shell\" for Go: type `x := 21`, then `x * 2` and you see `42` instantly, without creating a file.",
+        'It runs on an interpreter (yaegi), so there is nothing to build to try an expression.',
+        'Common packages such as `strings` or `fmt` are imported for you: type `strings.ToUpper("hello")` and go.',
+        'Perfect for settling a small doubt without touching your program.',
+      ],
+      alt: 'The VizcachaIDE interactive Go console: x := 21, then x * 2, and 42 appears',
+      caption: 'The Go console: type, press Enter and see the result.',
+    },
+    files: {
+      t: 'Your files and your project',
+      items: [
+        'A **File menu** and New, Open and Save buttons, like Thonny: New (Ctrl+N), Open (Ctrl+O), Open folder, Open recent (the last 10), Save (Ctrl+S), Save as (Ctrl+Shift+S, also for a new file), Save all, Close (Ctrl+W) and Close all.',
+        'In the **Files** panel, right-click: new file here, new folder, rename (F2), show in Explorer and copy path.',
+        'When you delete, the file **goes to the Recycle Bin**; it is never erased for good.',
+        'The **Go module manager** creates `go.mod`, tidies dependencies, adds a package and links to its page on pkg.go.dev.',
+        'If an open file changes outside the IDE it **reloads by itself** (if you have unsaved changes, it asks first). The window remembers its size and position.',
+      ],
+      alt: 'The VizcachaIDE File menu with New, Open, Open folder, Open recent, Save and Save as',
+      caption: 'The File menu, with the shortcuts you already know.',
     },
     fast: {
       t: 'Write faster',
@@ -113,6 +140,8 @@ export default {
         d: 'The full version ships with Go, the Delve debugger and gopls: install VizcachaIDE and you can start coding.',
       },
     ],
+    shotAlt: 'VizcachaIDE in the dark theme: the editor, the output and the Assistant',
+    shotCaption: 'Light or dark theme, whichever is easier on your eyes.',
   },
 
   download: {
@@ -205,7 +234,12 @@ export default {
   peru: {
     eyebrow: 'Made in Peru',
     title: 'A Codeplai Games project',
-    p1: 'VizcachaIDE is a project by [Codeplai Games](https://codeplai.pe), created by Marks Calderon, CEO of Codeplai. Its name comes from the **vizcacha**, the Andean rodent that lives among the rocks of the highlands: small, curious and always alert.',
+    p1: 'VizcachaIDE is a project by [Codeplai Games](https://codeplai.pe), created by Marks Calderon, CEO of Codeplai.',
+    story: [
+      'At Codeplai we build with **Go**: a simple, fast and well-designed language. That is why we wanted to share a friendly tool for learning it, so nobody gives up before writing a first program because of a terminal or an installation.',
+      'The name comes from the **vizcacha**, the Andean rodent from Peru that always looks relaxed, sunning itself on the rocks. That is the spirit: **learn Go calmly**, without fighting terminals and configuration.',
+      'We were inspired by **Thonny**, the IDE that lets thousands of people learn Python without stress: few things on screen, everything in sight and errors that explain themselves.',
+    ],
     contactTitle: 'Contact',
     p2: 'Have ideas, found a bug, or want to use it in your class? Write to us at [hola@codeplai.pe](mailto:hola@codeplai.pe) or open an issue on GitHub.',
     issue: 'Open an issue',
@@ -280,6 +314,43 @@ export default {
         ],
       },
       {
+        id: 'files',
+        t: 'Files and projects',
+        blocks: [
+          {
+            ul: [
+              '**File menu:** New (Ctrl+N), Open file (Ctrl+O), Open folder, Open recent (the last 10 files), Save (Ctrl+S), Save as (Ctrl+Shift+S), Save all, Close (Ctrl+W) and Close all. The toolbar also has New, Open and Save buttons.',
+              '**Save as** also works for a new file that has never been saved.',
+            ],
+          },
+          { h: 'The Files panel' },
+          {
+            p: 'Right-click a file or folder to create a file or folder there, rename (F2), delete, show in Explorer or copy the path. **Delete sends the item to the Recycle Bin**: it is never erased permanently, so you can get it back.',
+          },
+          { h: 'Go modules' },
+          {
+            p: 'The module manager lets you create your project `go.mod`, tidy dependencies (`go mod tidy`), add a package and open its page on pkg.go.dev.',
+          },
+          { h: 'Changes outside the IDE' },
+          {
+            p: 'If an open file changes outside VizcachaIDE, it reloads automatically. If you had unsaved changes, it asks what to do first. The window remembers its size and position.',
+          },
+        ],
+      },
+      {
+        id: 'console',
+        t: 'Go console',
+        blocks: [
+          {
+            p: "The console is like Thonny's \"Shell\": use it to try ideas without creating a file. It runs on an interpreter (yaegi), so results appear instantly.",
+          },
+          { code: 'x := 21\nx * 2\n// 42\nstrings.ToUpper("hello")\n// "HELLO"' },
+          {
+            p: 'Common packages such as `strings` are imported automatically. Right-click the console to copy, paste or clear.',
+          },
+        ],
+      },
+      {
         id: 'run',
         t: 'Run your program',
         blocks: [
@@ -289,6 +360,9 @@ export default {
               'If your program asks for keyboard input, type in the console and press Enter.',
               'You can pass arguments to your program and open projects that use `go.mod`.',
               'When you save, your code is tidied up with the standard Go format (gofmt).',
+              '**Stop** first sends an interrupt (like Ctrl+C) so your program `defer`s and signal handlers run; if it does not respond, it ends it.',
+              'Output shows ANSI colors and progress bars that redraw themselves with `\\r`.',
+              'Right-click in Output, Problems or Console: copy, copy all, paste, select all and clear.',
             ],
           },
         ],
@@ -307,6 +381,9 @@ export default {
             ],
           },
           {
+            p: 'If your program compiles but `go vet` finds something suspicious (for example a `Printf` whose format does not match its values), the Assistant explains it after the run.',
+          },
+          {
             p: 'A good exercise: make a mistake on purpose (declare a variable you never use), press F5 and read the Assistant explanation.',
           },
         ],
@@ -321,7 +398,7 @@ export default {
               'Click next to a line number to set a **breakpoint**.',
               'Press **Debug (F6)**. The program stops at that line.',
               'Move forward with **Next line (F7)**, **Go into function (F8)** or **Leave function (F9)**.',
-              'Watch your variables at each step: the one that just changed is highlighted. The "How you got here" panel shows the call stack.',
+              'Watch your variables at each step: the one that just changed is highlighted. The calls panel shows each function as a box inside the one that called it, with its arguments (for example `factorial(n=3)`), so recursion becomes visible. "You are here" marks the current call.',
               '**Continue (Shift+F6)** runs to the next breakpoint; **Stop debugging (Shift+F5)** ends the session.',
             ],
           },
@@ -340,7 +417,9 @@ export default {
               ['Debug / Continue', 'F6 / Shift+F6'],
               ['Next line / Go into / Leave', 'F7 / F8 / F9'],
               ['Run to here', 'Ctrl+F10'],
-              ['Save', 'Ctrl+S'],
+              ['New / Open', 'Ctrl+N / Ctrl+O'],
+              ['Save / Save as', 'Ctrl+S / Ctrl+Shift+S'],
+              ['Close tab', 'Ctrl+W'],
               ['Find', 'Ctrl+F'],
               ['Go to line', 'Ctrl+G'],
               ['Go to definition', 'F12 or Ctrl+click'],

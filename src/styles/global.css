@@ -1108,3 +1108,14 @@ figcaption {
     min-width: 560px;
   }
 }
+
+/* Captura bajo una rejilla de tarjetas (tema oscuro) */
+.cards__shot {
+  max-width: 1000px;
+  margin: 48px auto 0;
+}
+.peru__story {
+  margin: 14px 0 0;
+  color: var(--on-ink-2, inherit);
+  line-height: 1.65;
+}

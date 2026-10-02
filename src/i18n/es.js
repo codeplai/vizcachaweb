@@ -61,6 +61,10 @@ export default {
         'Escribe en la consola cuando tu programa te pida datos por teclado.',
         'Pasa argumentos a tu programa y trabaja con proyectos que usan `go.mod`.',
         'Tu código se ordena solo al guardar, con el formato estándar de Go (gofmt).',
+        '**Detener** primero envía un Ctrl+C a tu programa, para que sus `defer` y manejadores de señales se ejecuten, y recién después lo termina.',
+        'La salida entiende **colores ANSI** y las barras de progreso que se redibujan con `\\r`.',
+        'Si `go vet` detecta algo sospechoso en un programa que sí compila (por ejemplo, un `Printf` cuyo formato no coincide con sus valores), el Asistente te lo explica después de ejecutar.',
+        'Clic derecho en **Salida**, **Problemas** y **Consola**: copiar, copiar todo, pegar, seleccionar todo y limpiar.',
       ],
     },
     errors: {
@@ -82,8 +86,31 @@ export default {
         'Mira el valor de tus variables en cada paso. La que acaba de cambiar se resalta, para que veas qué hizo la última línea.',
         'Descubre **cómo llegaste ahí** (la pila de llamadas) y qué hace cada goroutine.',
       ],
-      alt: 'El depurador de VizcachaIDE mostrando las variables, la que acaba de cambiar y la pila de llamadas',
-      caption: 'Depurando paso a paso: variables, la que acaba de cambiar y cómo llegaste ahí.',
+      alt: 'El depurador de VizcachaIDE mostrando las llamadas como cajas anidadas, cada una con sus argumentos, por ejemplo factorial(n=3)',
+      caption: 'Cada llamada es una caja dentro de la que la hizo. «Aquí estás» marca la llamada actual.',
+    },
+    console: {
+      t: 'Probar ideas en la consola de Go',
+      items: [
+        'Es el equivalente de la «Shell» de Thonny: escribe `x := 21`, luego `x * 2` y verás `42` al instante, sin crear un archivo.',
+        'Funciona con un intérprete (yaegi), así que no necesitas compilar para probar una expresión.',
+        'Los paquetes comunes, como `strings` o `fmt`, se importan solos: escribe `strings.ToUpper("hola")` y ya.',
+        'Es ideal para despejar una duda pequeña sin tocar tu programa.',
+      ],
+      alt: 'La consola interactiva de Go de VizcachaIDE: se escribe x := 21, luego x * 2 y aparece 42',
+      caption: 'La consola de Go: escribe, pulsa Enter y mira el resultado.',
+    },
+    files: {
+      t: 'Tus archivos y tu proyecto',
+      items: [
+        'Un **menú Archivo** y los botones Nuevo, Abrir y Guardar, como en Thonny: Nuevo (Ctrl+N), Abrir (Ctrl+O), Abrir carpeta, Abrir reciente (los últimos 10), Guardar (Ctrl+S), Guardar como (Ctrl+Shift+S, también para un archivo nuevo), Guardar todo, Cerrar (Ctrl+W) y Cerrar todo.',
+        'En el panel **Archivos**, clic derecho: nuevo archivo aquí, nueva carpeta, renombrar (F2), mostrar en el Explorador y copiar la ruta.',
+        'Al eliminar, el archivo **va a la Papelera de reciclaje**: nunca se borra para siempre.',
+        'El **gestor de módulos de Go** crea el `go.mod`, ordena las dependencias (tidy), añade un paquete y te lleva a su página en pkg.go.dev.',
+        'Si un archivo abierto cambia fuera del IDE, se **recarga solo** (si tienes cambios sin guardar, primero te pregunta). La ventana recuerda su tamaño y su posición.',
+      ],
+      alt: 'El menú Archivo de VizcachaIDE con Nuevo, Abrir, Abrir carpeta, Abrir reciente, Guardar y Guardar como',
+      caption: 'El menú Archivo, con los atajos de siempre.',
     },
     fast: {
       t: 'Escribir más rápido',
@@ -117,6 +144,8 @@ export default {
         d: 'La versión completa trae Go, el depurador Delve y gopls: instalas VizcachaIDE y ya puedes programar.',
       },
     ],
+    shotAlt: 'VizcachaIDE con el tema oscuro: el editor, la salida y el Asistente',
+    shotCaption: 'Tema claro u oscuro, el que te canse menos la vista.',
   },
 
   download: {
@@ -209,7 +238,12 @@ export default {
   peru: {
     eyebrow: 'Hecho en Perú',
     title: 'Un proyecto de Codeplai Games',
-    p1: 'VizcachaIDE es un proyecto de [Codeplai Games](https://codeplai.pe), creado por Marks Calderon, CEO de Codeplai. Su nombre viene de la **vizcacha**, el roedor de los Andes que vive entre las rocas de la sierra: pequeño, curioso y siempre atento.',
+    p1: 'VizcachaIDE es un proyecto de [Codeplai Games](https://codeplai.pe), creado por Marks Calderon, CEO de Codeplai.',
+    story: [
+      'En Codeplai construimos con **Go**: es un lenguaje sencillo, rápido y muy bien pensado. Por eso quisimos compartir una herramienta amable para aprenderlo, de modo que nadie se rinda antes de escribir su primer programa por culpa de una terminal o de una instalación.',
+      'El nombre viene de la **vizcacha**, el roedor andino del Perú que siempre se ve relajado, tomando el sol sobre las rocas. Ese es el espíritu: **aprender Go con calma**, sin pelearte con terminales ni configuraciones.',
+      'Nos inspiramos en **Thonny**, el IDE que ha hecho que miles de personas aprendan Python sin estrés: pocas cosas en pantalla, todo a la vista y errores que se explican.',
+    ],
     contactTitle: 'Contacto',
     p2: '¿Tienes ideas, encontraste un error o quieres usarlo en tu clase? Escríbenos a [hola@codeplai.pe](mailto:hola@codeplai.pe) o abre un *issue* en GitHub.',
     issue: 'Abrir un issue',
@@ -284,6 +318,43 @@ export default {
         ],
       },
       {
+        id: 'archivos',
+        t: 'Archivos y proyectos',
+        blocks: [
+          {
+            ul: [
+              '**Menú Archivo:** Nuevo (Ctrl+N), Abrir archivo (Ctrl+O), Abrir carpeta, Abrir reciente (los últimos 10 archivos), Guardar (Ctrl+S), Guardar como (Ctrl+Shift+S), Guardar todo, Cerrar (Ctrl+W) y Cerrar todo. También hay botones de Nuevo, Abrir y Guardar en la barra.',
+              '**Guardar como** sirve también para un archivo nuevo que todavía no se guardó.',
+            ],
+          },
+          { h: 'El panel Archivos' },
+          {
+            p: 'Haz clic derecho sobre un archivo o una carpeta para crear un archivo o una carpeta ahí, renombrar (F2), eliminar, mostrar en el Explorador o copiar la ruta. **Eliminar envía el elemento a la Papelera de reciclaje**: nunca se borra de forma permanente, así que puedes recuperarlo.',
+          },
+          { h: 'Módulos de Go' },
+          {
+            p: 'El gestor de módulos te deja crear el `go.mod` de tu proyecto, ordenar las dependencias (`go mod tidy`), añadir un paquete y abrir su página en pkg.go.dev.',
+          },
+          { h: 'Cambios fuera del IDE' },
+          {
+            p: 'Si un archivo abierto cambia fuera de VizcachaIDE, se recarga automáticamente. Si tenías cambios sin guardar, primero te pregunta qué hacer. La ventana recuerda su tamaño y su posición.',
+          },
+        ],
+      },
+      {
+        id: 'consola',
+        t: 'Consola de Go',
+        blocks: [
+          {
+            p: 'La consola es como la «Shell» de Thonny: sirve para probar ideas sin crear un archivo. Usa un intérprete (yaegi), así que el resultado aparece al instante.',
+          },
+          { code: 'x := 21\nx * 2\n// 42\nstrings.ToUpper("hola")\n// "HOLA"' },
+          {
+            p: 'Los paquetes comunes, como `strings`, se importan automáticamente. Clic derecho en la consola para copiar, pegar o limpiar.',
+          },
+        ],
+      },
+      {
         id: 'ejecutar',
         t: 'Ejecutar tu programa',
         blocks: [
@@ -293,6 +364,9 @@ export default {
               'Si tu programa pide datos por teclado, escribe en la consola y pulsa Enter.',
               'Puedes pasar argumentos a tu programa y abrir proyectos que usan `go.mod`.',
               'Al guardar, tu código se ordena con el formato estándar de Go (gofmt).',
+              '**Detener** envía primero una interrupción (como Ctrl+C) para que se ejecuten los `defer` y los manejadores de señales de tu programa; si no responde, lo termina.',
+              'La salida muestra colores ANSI y las barras de progreso que se redibujan con `\\r`.',
+              'Clic derecho en Salida, Problemas o Consola: copiar, copiar todo, pegar, seleccionar todo y limpiar.',
             ],
           },
         ],
@@ -311,6 +385,9 @@ export default {
             ],
           },
           {
+            p: 'Si tu programa compila pero `go vet` encuentra algo sospechoso (por ejemplo, un `Printf` cuyo formato no coincide con sus valores), el Asistente lo explica después de ejecutar.',
+          },
+          {
             p: 'Un buen ejercicio: comete un error a propósito (declara una variable que nunca uses), pulsa F5 y lee la explicación del Asistente.',
           },
         ],
@@ -325,7 +402,7 @@ export default {
               'Haz clic junto a un número de línea para poner un **punto de interrupción**.',
               'Pulsa **Depurar (F6)**. El programa se detiene en esa línea.',
               'Avanza con **Siguiente línea (F7)**, **Entrar en la función (F8)** o **Salir de la función (F9)**.',
-              'Mira tus variables en cada paso: la que acaba de cambiar se resalta. El panel «Cómo llegaste aquí» muestra la pila de llamadas.',
+              'Mira tus variables en cada paso: la que acaba de cambiar se resalta. El panel de llamadas muestra cada función como una caja dentro de la que la llamó, con sus argumentos (por ejemplo `factorial(n=3)`): así la recursión se ve. «Aquí estás» marca la llamada actual.',
               '**Continuar (Shift+F6)** sigue hasta el próximo punto de interrupción; **Terminar depuración (Shift+F5)** termina la sesión.',
             ],
           },
@@ -344,7 +421,9 @@ export default {
               ['Depurar / Continuar', 'F6 / Shift+F6'],
               ['Siguiente línea / Entrar / Salir', 'F7 / F8 / F9'],
               ['Ejecutar hasta aquí', 'Ctrl+F10'],
-              ['Guardar', 'Ctrl+S'],
+              ['Nuevo / Abrir', 'Ctrl+N / Ctrl+O'],
+              ['Guardar / Guardar como', 'Ctrl+S / Ctrl+Shift+S'],
+              ['Cerrar pestaña', 'Ctrl+W'],
               ['Buscar', 'Ctrl+F'],
               ['Ir a una línea', 'Ctrl+G'],
               ['Ir a la definición', 'F12 o Ctrl+clic'],
