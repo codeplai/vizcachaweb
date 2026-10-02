@@ -7,7 +7,7 @@ patrón de i18n, cabecera y pie), con el cian de Go (`#00ADD8`) como identidad p
 ## Estructura
 
 ```
-site/
+vizcachaweb/
 ├─ astro.config.mjs        sitio, sitemap con i18n
 ├─ public/                 favicon, og.png (1200x630), robots.txt, _headers, llms.txt
 └─ src/
@@ -28,7 +28,7 @@ Rutas: `/`, `/manual`, `/en`, `/en/manual` (sin barra final, igual que codeplai.
 ## Desarrollo local
 
 ```bash
-cd site
+cd vizcachaweb
 npm install
 npm run dev        # http://localhost:4321
 npm run build      # genera dist/
@@ -40,16 +40,16 @@ Requiere Node 22 (`.nvmrc`).
 ## Publicar en Cloudflare Pages
 
 1. En **dash.cloudflare.com → Compute (Workers y Pages) → Crear → Pages → Conectar a Git**,
-   autoriza GitHub y elige el repositorio `codeplai/VizcachaIDE`.
+   autoriza GitHub y elige el repositorio `codeplai/vizcachaweb`.
 2. Configuración de compilación:
 
    | Campo | Valor |
    |---|---|
    | Framework preset | Astro |
-   | Directorio raíz (Root directory) | `site` |
+   | Directorio raíz (Root directory) | *(vacío: la raíz del repositorio)* |
    | Comando de compilación | `npm run build` |
    | Directorio de salida | `dist` |
-   | Versión de Node | `22` (lo toma de `site/.nvmrc`; si hace falta, variable `NODE_VERSION=22`) |
+   | Versión de Node | `22` (lo toma de `.nvmrc`; si hace falta, variable `NODE_VERSION=22`) |
 
 3. **Guardar e implementar.** En unos minutos tendrás una URL tipo `vizcachaide.pages.dev`.
    Cada `git push` a la rama de producción vuelve a publicar el sitio.
@@ -59,8 +59,6 @@ Requiere Node 22 (`.nvmrc`).
 5. Comprueba `https://vizcacha.codeplai.pe`, `/en`, `/manual`, `/sitemap-index.xml` y
    `/robots.txt`.
 
-Opcional: en **Settings → Builds → Build watch paths** limita las compilaciones a `site/*`
-para que los cambios del IDE no republiquen el sitio.
 
 ## SEO incluido
 
