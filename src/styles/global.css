@@ -1119,3 +1119,10 @@ figcaption {
   color: var(--on-ink-2, inherit);
   line-height: 1.65;
 }
+
+/* Cuatro lenguajes */
+.langs__card { display: flex; flex-direction: column; gap: 0.6rem; }
+.langs__tools { font-size: 0.85rem; color: var(--muted, inherit); opacity: 0.8; margin: 0; }
+.langs__shot { width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(128, 128, 128, 0.25); }
+.langs__note { margin-top: 1.5rem; max-width: 70ch; }
+@media (min-width: 701px) and (max-width: 1100px) { .langs.cards--4 { grid-template-columns: repeat(2, 1fr); } }

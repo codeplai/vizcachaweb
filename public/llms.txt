@@ -1,14 +1,14 @@
 # VizcachaIDE
 
-> El IDE de Go para quien recién empieza / The Go IDE for people just starting out. Gratis y de código abierto (MIT), bilingüe ES/EN, hecho en Perú por Codeplai Games. Versión candidata 2.0.0-rc1 para Windows 10/11 x64 (macOS y Linux: versión preliminar).
+> Un IDE para aprender a programar en Go, Python, C++ y Rust / An IDE to learn to program in Go, Python, C++ and Rust. Gratis y de código abierto (MIT), bilingüe ES/EN, hecho en Perú por Codeplai Games. Versión 2.6.0 para Windows 10/11 x64, macOS (Intel y Apple Silicon) y Linux (macOS y Linux: primeras versiones).
 
-VizcachaIDE se inspira en Thonny: escribir y ejecutar Go con un botón, un Asistente que explica 25 errores comunes en español e inglés, y un depurador paso a paso. La versión completa incluye Go 1.25, Delve y gopls; la ligera (unos 6 MB) requiere Go instalado. Los instaladores aún no tienen firma digital, por lo que Windows SmartScreen puede avisar; el código fuente es público y cada versión incluye SHA256SUMS.
+VizcachaIDE se inspira en Thonny: escribir y ejecutar con un botón, un Asistente que explica los errores comunes en español e inglés (Go 25, Python unos 30, C++ 27, Rust unos 45, con propiedad y préstamos), y un depurador paso a paso (Delve, debugpy, lldb-dap). Incluye autocompletado (gopls, python-lsp-server, clangd, rust-analyzer), formato al guardar, diálogo de paquetes con búsqueda por nombre, terminal integrada, Archivo → Nuevo proyecto y actualizaciones automáticas con comprobación SHA-256. La versión completa incluye Go, Python, C++ (en Windows) y Rust; hay variantes full-go, full-python, full-cpp (Windows) y lite (solo el IDE). Los instaladores aún no tienen firma digital, por lo que Windows SmartScreen puede avisar; el código fuente es público y cada versión incluye SHA256SUMS.
 
 ## Páginas
-- [Inicio (español)](https://vizcacha.codeplai.pe/): qué es, para quién, funciones, descarga y aviso de seguridad.
-- [Manual (español)](https://vizcacha.codeplai.pe/manual): instalar, primera vez, ejecutar, errores, depurar, atajos y solución de problemas.
-- [Home (English)](https://vizcacha.codeplai.pe/en): what it is, who it is for, features, download and the Windows warning.
-- [Manual (English)](https://vizcacha.codeplai.pe/en/manual): install, first run, run, errors, debugging, shortcuts and troubleshooting.
+- [Inicio (español)](https://vizcacha.codeplai.pe/): qué es, los cuatro lenguajes, funciones, descarga y aviso de seguridad.
+- [Manual (español)](https://vizcacha.codeplai.pe/manual): instalar, nuevo proyecto, lenguajes y paquetes, terminal, ejecutar, errores, depurar, actualizaciones, atajos y solución de problemas.
+- [Home (English)](https://vizcacha.codeplai.pe/en): what it is, the four languages, features, download and the Windows warning.
+- [Manual (English)](https://vizcacha.codeplai.pe/en/manual): install, new project, languages and packages, terminal, run, errors, debugging, updates, shortcuts and troubleshooting.
 
 ## Enlaces
 - [Descargas / Releases](https://github.com/codeplai/VizcachaIDE/releases)

@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import { inlineMarkdown } from '../i18n/inlineMarkdown.js';
+import { screenshots } from '../assets/screenshots.js';
+import { t } from '../i18n/index.js';
+
+// «Cuatro lenguajes»: una tarjeta por lenguaje con sus herramientas y lo que explica el Asistente.
+const { lang = 'es' } = Astro.props;
+const c = t(lang).langs;
+const keys = ['go', 'python', 'cpp', 'rust'];
+---
+
+<section class="section section--alt" id={c.id} aria-labelledby="langs-title">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow">{c.eyebrow}</p>
+      <h2 class="h2" id="langs-title">{c.title}</h2>
+      <p class="lead" set:html={inlineMarkdown(c.lead)} />
+    </div>
+    <ul class="cards cards--4 langs">
+      {
+        c.items.map((it, i) => (
+          <li class="card langs__card">
+            <h3 class="h3">{it.name}</h3>
+            <p class="langs__tools">{it.tools}</p>
+            <Image src={screenshots[lang][keys[i]]} alt={c.shotAlts[keys[i]]} width={480} loading="lazy" sizes="(max-width: 700px) 90vw, 300px" class="langs__shot" />
+            <ul class="ticks">
+              {it.points.map((p) => <li set:html={inlineMarkdown(p)} />)}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="muted langs__note" set:html={inlineMarkdown(c.note)} />
+  </div>
+</section>
