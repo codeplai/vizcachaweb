@@ -105,7 +105,13 @@ const app = {
         if (!btn) return;
         var root = document.documentElement;
         var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
+        var apply = function () {
+          root.setAttribute('data-theme', next);
+        };
+        // Fundido entre temas en vez de un salto brusco de brillo (salvo con movimiento reducido).
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (document.startViewTransition && !reduce) document.startViewTransition(apply);
+        else apply();
         try {
           localStorage.setItem('vz_theme', next);
         } catch (err) {}

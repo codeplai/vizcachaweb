@@ -6,6 +6,16 @@ import { t } from '../i18n/index.js';
 const { lang = 'es' } = Astro.props;
 const c = t(lang).features;
 const shots = screenshots[lang];
+
+// Primero las funciones que se entienden mejor viéndolas (con captura);
+// después, en una rejilla de tarjetas, el resto.
+const showcase = [
+  { f: c.errors, image: shots.assistant },
+  { f: c.debug, image: shots.debugger, flip: true },
+  { f: c.console, image: shots.console },
+  { f: c.files, image: shots.fileMenu, flip: true },
+];
+const tiles = [c.run, c.project, c.terminal, c.fast];
 ---
 
 <section class="section" id="que-puedes-hacer" aria-labelledby="features-title">
@@ -16,14 +26,25 @@ const shots = screenshots[lang];
     </div>
 
     <div class="features">
-      <FeatureRow title={c.run.t} items={c.run.items} />
-      <FeatureRow title={c.errors.t} items={c.errors.items} image={shots.assistant} alt={c.errors.alt} caption={c.errors.caption} />
-      <FeatureRow title={c.debug.t} items={c.debug.items} image={shots.debugger} alt={c.debug.alt} caption={c.debug.caption} flip={true} />
-      <FeatureRow title={c.project.t} items={c.project.items} />
-      <FeatureRow title={c.terminal.t} items={c.terminal.items} />
-      <FeatureRow title={c.console.t} items={c.console.items} image={shots.console} alt={c.console.alt} caption={c.console.caption} />
-      <FeatureRow title={c.files.t} items={c.files.items} image={shots.fileMenu} alt={c.files.alt} caption={c.files.caption} flip={true} />
-      <FeatureRow title={c.fast.t} items={c.fast.items} />
+      {
+        showcase.map(({ f, image, flip }) => (
+          <FeatureRow
+            title={f.t}
+            summary={f.s}
+            items={f.items}
+            more={c.more}
+            image={image}
+            alt={f.alt ?? f.caption}
+            caption={f.caption}
+            flip={flip}
+          />
+        ))
+      }
+    </div>
+
+    <p class="features__also">{c.alsoTitle}</p>
+    <div class="tiles">
+      {tiles.map((f) => <FeatureRow title={f.t} summary={f.s} items={f.items} more={c.more} />)}
     </div>
   </div>
 </section>

@@ -6,9 +6,13 @@ import { t, routes, project } from '../i18n/index.js';
 const { lang = 'es' } = Astro.props;
 const c = t(lang).download;
 const r = routes[lang];
+
+// La primera variante es la recomendada: va destacada, con el botón principal.
+// El resto, una tarjeta por opción, cada una con su propia acción.
+const [featured, ...others] = c.rows;
 ---
 
-<section class="section section--alt" id="descargar" aria-labelledby="download-title">
+<section class="section" id="descargar" aria-labelledby="download-title">
   <div class="wrap">
     <div class="section__head">
       <p class="eyebrow">{c.eyebrow}</p>
@@ -18,33 +22,32 @@ const r = routes[lang];
 
     <p class="versiontag">{c.version}</p>
 
-    <div class="tablewrap" tabindex="0" role="region" aria-label={c.tableCaption}>
-      <table class="table">
-        <caption class="visually-hidden">{c.tableCaption}</caption>
-        <thead>
-          <tr>{c.cols.map((h) => <th scope="col">{h}</th>)}</tr>
-        </thead>
-        <tbody>
-          {
-            c.rows.map((row) => (
-              <tr>
-                <th scope="row">
-                  {row.name}
-                  {row.tag && <span class="pill">{row.tag}</span>}
-                </th>
-                <td>{row.includes}</td>
-                <td>{row.who}</td>
-                <td>
-                  <ul class="plainlist">
-                    {row.files.map((f) => <li>{f}</li>)}
-                  </ul>
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+    <div class="variant variant--featured">
+      <div>
+        {featured.tag && <span class="pill">{featured.tag}</span>}
+        <h3 class="h3 variant__name">{featured.name}</h3>
+        <p class="variant__includes">{featured.includes}</p>
+        <p class="variant__who">{featured.who}</p>
+      </div>
+      <div class="variant__action">
+        <a class="btn btn--lg" href={project.releasesUrl} rel="noopener">{c.button}</a>
+        <p class="variant__size">{featured.files.join(' ')}</p>
+      </div>
     </div>
+
+    <ul class="variants">
+      {
+        others.map((v) => (
+          <li class="variant">
+            <h3 class="h3 variant__name">{v.name}</h3>
+            <p class="variant__includes">{v.includes}</p>
+            <p class="variant__who">{v.who}</p>
+            <p class="variant__size">{v.files.join(' ')}</p>
+            <a class="link variant__link" href={project.releasesUrl} rel="noopener">{c.cardLink}</a>
+          </li>
+        ))
+      }
+    </ul>
 
     <div class="download__cols">
       <div>
@@ -52,10 +55,9 @@ const r = routes[lang];
         <ul class="ticks">
           {c.systems.map((s) => <li set:html={inlineMarkdown(s)} />)}
         </ul>
-        <p class="muted">{c.webview}</p>
       </div>
       <div class="download__cta">
-        <a class="btn btn--lg" href={project.releasesUrl} rel="noopener">{c.button}</a>
+        <p class="muted">{c.webview}</p>
         <p class="muted">{c.buttonNote}</p>
         <a class="link" href={r.manual}>{c.manualLink}</a>
       </div>

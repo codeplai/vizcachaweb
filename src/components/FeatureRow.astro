@@ -2,16 +2,22 @@
 import { Image } from 'astro:assets';
 import { inlineMarkdown } from '../i18n/inlineMarkdown.js';
 
-// Un bloque de «qué puedes hacer»: título, lista y, si existe, captura con pie.
-const { title, items, image = null, alt = '', caption = '', flip = false } = Astro.props;
+// Una función de «qué puedes hacer»: una idea por bloque (título + una frase) y,
+// si hay captura, la captura grande. La lista completa queda un nivel más abajo,
+// en «Ver detalles», para que lo primero que se lea sea lo esencial.
+const { title, summary, items, more, image = null, alt = '', caption = '', flip = false } = Astro.props;
 ---
 
-<article class={`frow${image ? '' : ' frow--plain'}${flip ? ' frow--flip' : ''}`}>
+<article class={image ? `frow${flip ? ' frow--flip' : ''}` : 'tile'}>
   <div class="frow__text">
     <h3 class="h3">{title}</h3>
-    <ul class="ticks">
-      {items.map((it) => <li set:html={inlineMarkdown(it)} />)}
-    </ul>
+    <p class="frow__summary">{summary}</p>
+    <details class="more">
+      <summary>{more}</summary>
+      <ul class="ticks">
+        {items.map((it) => <li set:html={inlineMarkdown(it)} />)}
+      </ul>
+    </details>
   </div>
   {
     image && (

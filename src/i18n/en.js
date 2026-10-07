@@ -20,7 +20,7 @@ export default {
   hero: {
     "badge": "Version 2.6.0 · Free and open source",
     "h1": "An IDE to learn to program in Go, Python, C++ and Rust",
-    "sub": "Write your program, run it with one button, understand why it fails and watch it work step by step. Four languages with the same experience, all in a single window, in English or Spanish.",
+    "sub": "Write your program, run it with one button, understand why it fails and watch it work step by step.",
     "ctaPrimary": "Download",
     "ctaSecondary": "View the source",
     "note": "Inspired by Thonny, the IDE thousands of people use to learn Python.",
@@ -107,8 +107,11 @@ export default {
   features: {
     "eyebrow": "What you can do",
     "title": "Everything you need to learn, in a single window",
+    "more": "See details",
+    "alsoTitle": "And also",
     "run": {
       "t": "Write and run",
+      "s": "Press Run (F5) and see the output right away, with keyboard input, multi-file projects and formatting on save.",
       "items": [
         "Press **Run (F5)** and see your program output right away, in Go, Python, C++ or Rust.",
         "Type in **Output** when your program asks for keyboard input (`input()`, `std::cin`, `read_line`, `fmt.Scan`…).",
@@ -121,6 +124,7 @@ export default {
     },
     "errors": {
       "t": "Understand your errors",
+      "s": "When something fails, the Assistant explains what happened and how to fix it, in your language.",
       "items": [
         "When something fails, the **Assistant** explains **what happened and how to fix it**, in your language: about 25 Go errors, 30 Python, 27 C++ and 45 Rust.",
         "For Rust it explains ownership and borrowing (a moved value, two mutable borrows…) with a tiny example.",
@@ -133,6 +137,7 @@ export default {
     },
     "debug": {
       "t": "Watch your program step by step",
+      "s": "Set a breakpoint, step line by line and watch your variables change.",
       "items": [
         "Click next to a line number to set a **breakpoint** and press **Debug (F6)**.",
         "Move on with plainly named buttons: **Step over**, **Step into**, **Step out**.",
@@ -145,6 +150,7 @@ export default {
     },
     "project": {
       "t": "Start a project in a minute",
+      "s": "Pick a name, a language and a folder, and the project is ready to run with F5.",
       "items": [
         "**File → New project…** (Ctrl+Shift+N): pick a name, the language and the folder, and the IDE leaves it ready for F5.",
         "Every project starts with a program that asks your name and greets you: Go (`go.mod`), Python, C++ with CMake and vcpkg, or Rust with Cargo.",
@@ -153,6 +159,7 @@ export default {
     },
     "terminal": {
       "t": "An integrated terminal",
+      "s": "A real terminal in your folder, with the same tools F5 uses.",
       "items": [
         "The **Terminal** tab opens a real terminal in your folder, and you can have several at once.",
         "The IDE's own tools come first in `PATH`: `go`, `python`, `pip`, `clang++`, `cmake` and `cargo` work exactly as with F5.",
@@ -161,6 +168,7 @@ export default {
     },
     "console": {
       "t": "Try ideas in the console",
+      "s": "Type a line, press Enter and see the result, without creating a file.",
       "items": [
         "It is the equivalent of Thonny's \"Shell\". In Go, type `x := 21`, then `x * 2` and you will see `42` right away, without creating a file (it uses an interpreter, yaegi).",
         "In Python, the `>>>` console remembers your variables from one line to the next.",
@@ -172,6 +180,7 @@ export default {
     },
     "files": {
       "t": "Your files and your project",
+      "s": "A File menu like Thonny's, with the usual shortcuts. Anything you delete goes to the Recycle Bin.",
       "items": [
         "A **File menu** and New, Open and Save buttons, like in Thonny: New (Ctrl+N), Open (Ctrl+O), Open Folder, Open Recent, Save (Ctrl+S), Save As, Save All, Close (Ctrl+W) and Close Folder.",
         "In the **Files** panel, right-click: new file here, new folder, rename (F2), show in Explorer and copy the path.",
@@ -184,6 +193,7 @@ export default {
     },
     "fast": {
       "t": "Write faster",
+      "s": "Autocomplete with documentation, parameter hints and go to definition with Ctrl+click.",
       "items": [
         "Smart code completion with the documentation of each function: gopls, python-lsp-server, clangd and rust-analyzer.",
         "Parameter help while you write a call, and the types the language infers, in grey inside the code.",
@@ -224,13 +234,6 @@ export default {
     "title": "Download VizcachaIDE",
     "lead": "It is free and open source (MIT license). Choose the full version if you want to start without installing anything else.",
     "version": "Version 2.6.0",
-    "tableCaption": "VizcachaIDE variants",
-    "cols": [
-      "Variant",
-      "What it contains",
-      "Who it is for",
-      "Approximate size"
-    ],
     "rows": [
       {
         "name": "Full",
@@ -286,6 +289,7 @@ export default {
       "The macOS and Linux builds are **new**: they are built and tested automatically on all three systems, but have had less real-world use than Windows. If you hit a problem, tell us."
     ],
     "webview": "The Windows portable version needs nothing else installed except WebView2, which comes with Windows 11 and almost every updated Windows 10.",
+    "cardLink": "Download on GitHub",
     "button": "Go to the downloads on GitHub",
     "buttonNote": "This opens the project's releases page. Download the file that matches your system and your choice.",
     "manualLink": "How to install and use it: the manual"
