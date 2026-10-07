@@ -8,27 +8,21 @@ const { lang = 'es' } = Astro.props;
 const c = t(lang).hero;
 ---
 
-{/* Como una página de producto: ícono de la app, título corto, una línea de apoyo,
-    la acción principal y, debajo, la captura grande. */}
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero__inner">
-    <Image
-      src={logo}
-      alt={c.logoAlt}
-      width={720}
-      loading="eager"
-      fetchpriority="high"
-      sizes="(max-width: 600px) 260px, 360px"
-      class="hero__icon"
-    />
-    <p class="hero__badge"><span class="pulse" aria-hidden="true"></span>{c.badge}</p>
-    <h1 class="hero__h1" id="hero-title">{c.h1}</h1>
-    <p class="hero__sub">{c.sub}</p>
-    <div class="hero__ctas">
-      <a class="btn btn--lg" href="#descargar">{c.ctaPrimary}</a>
-      <a class="btn btn--ghost btn--lg" href={project.repoUrl} rel="noopener">{c.ctaSecondary}</a>
+    <div>
+      <p class="hero__badge"><span class="pulse" aria-hidden="true"></span>{c.badge}</p>
+      <h1 class="hero__h1" id="hero-title">{c.h1}</h1>
+      <p class="hero__sub">{c.sub}</p>
+      <div class="hero__ctas">
+        <a class="btn" href="#descargar">{c.ctaPrimary}</a>
+        <a class="btn btn--ghost" href={project.repoUrl} rel="noopener">{c.ctaSecondary}</a>
+      </div>
+      <p class="hero__note">{c.note}</p>
     </div>
-    <p class="hero__note">{c.note}</p>
+    <div class="hero__logo">
+      <Image src={logo} alt={c.logoAlt} width={640} loading="eager" fetchpriority="high" sizes="(max-width: 900px) 90vw, 560px" />
+    </div>
   </div>
 
   <figure class="hero__shot">

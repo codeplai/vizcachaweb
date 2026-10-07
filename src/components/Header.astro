@@ -37,6 +37,8 @@ const links = [
     </nav>
 
     <div class="header__tools">
+      <a class="parentlink" href={project.parentUrl} rel="noopener">{c.parentLink}</a>
+
       <div class="langswitch" role="group" aria-label={c.langLabel}>
         <a href={lang === 'es' ? selfHref : altHref} lang="es" aria-current={lang === 'es' ? 'true' : undefined}>ES</a>
         <a href={lang === 'en' ? selfHref : altHref} lang="en" aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
@@ -80,25 +82,16 @@ const links = [
     window.addEventListener('scroll', onScroll, { passive: true });
 
     if (btn && menu) {
-      var setOpen = function (open) {
-        menu.dataset.open = open ? 'true' : 'false';
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      };
       btn.addEventListener('click', function () {
-        setOpen(menu.dataset.open !== 'true');
+        var open = menu.dataset.open === 'true';
+        menu.dataset.open = open ? 'false' : 'true';
+        btn.setAttribute('aria-expanded', open ? 'false' : 'true');
       });
       menu.addEventListener('click', function (e) {
-        if (e.target.closest('a')) setOpen(false);
-      });
-      // Se cierra con Esc (devolviendo el foco al botón) o tocando fuera del header.
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && menu.dataset.open === 'true') {
-          setOpen(false);
-          btn.focus();
+        if (e.target.tagName === 'A') {
+          menu.dataset.open = 'false';
+          btn.setAttribute('aria-expanded', 'false');
         }
-      });
-      document.addEventListener('pointerdown', function (e) {
-        if (menu.dataset.open === 'true' && !header.contains(e.target)) setOpen(false);
       });
     }
   })();
