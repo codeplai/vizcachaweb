@@ -607,13 +607,13 @@ h4 {
   align-items: center;
   text-align: center;
 }
+/* El logo es una ilustración 3:2 con su propio fondo difuminado: se respeta su
+   proporción (nada de recortarlo a cuadrado) y se funde con el fondo oscuro. */
 .hero__icon {
   display: block;
-  width: 96px;
-  height: 96px;
-  border-radius: 22px;
-  margin-bottom: 28px;
-  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.5);
+  width: clamp(240px, 28vw, 360px);
+  height: auto;
+  margin: -24px 0 12px;
 }
 .hero__badge {
   display: inline-flex;

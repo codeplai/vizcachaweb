@@ -12,7 +12,15 @@ const c = t(lang).hero;
     la acción principal y, debajo, la captura grande. */}
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero__inner">
-    <Image src={logo} alt={c.logoAlt} width={192} loading="eager" fetchpriority="high" class="hero__icon" />
+    <Image
+      src={logo}
+      alt={c.logoAlt}
+      width={720}
+      loading="eager"
+      fetchpriority="high"
+      sizes="(max-width: 600px) 260px, 360px"
+      class="hero__icon"
+    />
     <p class="hero__badge"><span class="pulse" aria-hidden="true"></span>{c.badge}</p>
     <h1 class="hero__h1" id="hero-title">{c.h1}</h1>
     <p class="hero__sub">{c.sub}</p>
